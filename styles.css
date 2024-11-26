@@ -1,6 +1,6 @@
 /* General styles */
 body {
-  background: linear-gradient(to right, #1f4037, #99f2c8);
+  background: linear-gradient(to right, #2c5364, #0f2027);
   font-family: 'Arial', sans-serif;
   color: #ffffff;
   height: 100vh;
@@ -41,4 +41,11 @@ body {
   opacity: 0;
   transform: translateX(100%);
   transition: opacity 0.5s, transform 0.5s;
+}
+
+/* Timestamp styling */
+.task-time {
+  font-size: 0.9rem;
+  color: #ddd;
+  font-style: italic;
 }
