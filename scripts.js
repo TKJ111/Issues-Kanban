@@ -1,5 +1,6 @@
 // Select elements
 const todoInput = document.getElementById('todo-input');
+const todoTimeInput = document.getElementById('todo-time');
 const addTodoButton = document.getElementById('add-todo');
 const todoList = document.getElementById('todo-list');
 
@@ -8,25 +9,36 @@ document.addEventListener('DOMContentLoaded', loadTodos);
 
 // Add task
 addTodoButton.addEventListener('click', () => {
-  const task = todoInput.value.trim();
-  if (task) {
+  const taskDescription = todoInput.value.trim();
+  const taskTime = todoTimeInput.value.trim();
+  const createdAt = new Date().toLocaleString();
+
+  if (taskDescription && taskTime) {
+    const task = { description: taskDescription, time: taskTime, createdAt };
     addTask(task);
     saveTask(task);
     todoInput.value = '';
+    todoTimeInput.value = '';
   }
 });
 
 // Add task to the UI
 function addTask(task) {
   const li = document.createElement('li');
-  li.className = 'list-group-item d-flex justify-content-between align-items-center';
-  li.textContent = task;
+  li.className = 'list-group-item d-flex justify-content-between align-items-center flex-column flex-sm-row';
+
+  const taskInfo = document.createElement('div');
+  taskInfo.innerHTML = `
+    <strong>${task.description}</strong>
+    <div class="task-time">Due: ${task.time} | Added: ${task.createdAt}</div>
+  `;
 
   const deleteButton = document.createElement('button');
-  deleteButton.className = 'btn btn-sm btn-danger';
+  deleteButton.className = 'btn btn-sm btn-danger mt-2 mt-sm-0';
   deleteButton.textContent = 'Delete';
   deleteButton.onclick = () => removeTask(li, task);
 
+  li.appendChild(taskInfo);
   li.appendChild(deleteButton);
   todoList.appendChild(li);
 }
@@ -50,7 +62,12 @@ function saveTask(task) {
 // Delete task from Local Storage
 function deleteTask(task) {
   const tasks = JSON.parse(localStorage.getItem('todos')) || [];
-  const updatedTasks = tasks.filter((t) => t !== task);
+  const updatedTasks = tasks.filter(
+    (t) =>
+      t.description !== task.description ||
+      t.time !== task.time ||
+      t.createdAt !== task.createdAt
+  );
   localStorage.setItem('todos', JSON.stringify(updatedTasks));
 }
 
