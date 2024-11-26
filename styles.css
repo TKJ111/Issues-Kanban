@@ -1,0 +1,44 @@
+/* General styles */
+body {
+  background: linear-gradient(to right, #1f4037, #99f2c8);
+  font-family: 'Arial', sans-serif;
+  color: #ffffff;
+  height: 100vh;
+}
+
+/* Card styling */
+.card {
+  border: none;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+/* List item animations */
+.list-group-item {
+  border: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.list-group-item:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+  transform: scale(1.02);
+}
+
+/* Add button animation */
+#add-todo {
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+#add-todo:hover {
+  background-color: #007bff;
+  transform: scale(1.1);
+}
+
+/* Task removal animation */
+.fade-out {
+  opacity: 0;
+  transform: translateX(100%);
+  transition: opacity 0.5s, transform 0.5s;
+}
