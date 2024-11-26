@@ -36,7 +36,7 @@ function addTask(task) {
     <strong>${task.description}</strong>
     <div class="task-time">
       ${task.time !== "Ei annettua aikaa" ? `Tehtynä mennessä: ${task.time}` : ""} 
-      | Added: ${task.createdAt}
+      | Lisätty: ${task.createdAt}
     </div>
   `;
 
