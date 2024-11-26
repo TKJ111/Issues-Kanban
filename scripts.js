@@ -13,8 +13,12 @@ addTodoButton.addEventListener('click', () => {
   const taskTime = todoTimeInput.value.trim();
   const createdAt = new Date().toLocaleString();
 
-  if (taskDescription && taskTime) {
-    const task = { description: taskDescription, time: taskTime, createdAt };
+  if (taskDescription) {
+    const task = { 
+      description: taskDescription, 
+      time: taskTime || "No time specified", 
+      createdAt 
+    };
     addTask(task);
     saveTask(task);
     todoInput.value = '';
@@ -30,7 +34,10 @@ function addTask(task) {
   const taskInfo = document.createElement('div');
   taskInfo.innerHTML = `
     <strong>${task.description}</strong>
-    <div class="task-time">Due: ${task.time} | Added: ${task.createdAt}</div>
+    <div class="task-time">
+      ${task.time !== "No time specified" ? `Due: ${task.time}` : ""} 
+      | Added: ${task.createdAt}
+    </div>
   `;
 
   const deleteButton = document.createElement('button');
