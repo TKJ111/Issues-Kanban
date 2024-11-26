@@ -16,7 +16,7 @@ addTodoButton.addEventListener('click', () => {
   if (taskDescription) {
     const task = { 
       description: taskDescription, 
-      time: taskTime || "No time specified", 
+      time: taskTime || "Ei annettua aikaa", 
       createdAt 
     };
     addTask(task);
@@ -35,14 +35,14 @@ function addTask(task) {
   taskInfo.innerHTML = `
     <strong>${task.description}</strong>
     <div class="task-time">
-      ${task.time !== "No time specified" ? `Due: ${task.time}` : ""} 
+      ${task.time !== "Ei annettua aikaa" ? `Tehtynä mennessä: ${task.time}` : ""} 
       | Added: ${task.createdAt}
     </div>
   `;
 
   const deleteButton = document.createElement('button');
   deleteButton.className = 'btn btn-sm btn-danger mt-2 mt-sm-0';
-  deleteButton.textContent = 'Delete';
+  deleteButton.textContent = 'Poista';
   deleteButton.onclick = () => removeTask(li, task);
 
   li.appendChild(taskInfo);
